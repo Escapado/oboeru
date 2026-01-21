@@ -1,90 +1,181 @@
-# Obsidian Sample Plugin
+# Oboeru
 
-This is a sample plugin for Obsidian (https://obsidian.md).
+A spaced repetition flashcard plugin for Obsidian using the FSRS (Free Spaced Repetition Scheduler) algorithm.
 
-This project uses TypeScript to provide type checking and documentation.
-The repo depends on the latest plugin API (obsidian.d.ts) in TypeScript Definition format, which contains TSDoc comments describing what it does.
+## Features
 
-This sample plugin demonstrates some of the basic functionality the plugin API can do.
-- Adds a ribbon icon, which shows a Notice when clicked.
-- Adds a command "Open modal (simple)" which opens a Modal.
-- Adds a plugin setting tab to the settings page.
-- Registers a global click event and output 'click' to the console.
-- Registers a global interval which logs 'setInterval' to the console.
+- 🧠 **FSRS-6 Algorithm** - Modern, research-backed spaced repetition
+- 📝 **Two Card Formats** - Simple inline or multi-line cards
+- 📊 **Smart Scheduling** - Optimized review intervals based on your performance
+- 🎯 **Improved Cram Mode** - Focused practice with Again/Good buttons and automatic retry system
+- 🔀 **Randomized Order** - Cards are shuffled for better learning
+- 👁️ **Clean Editor** - Metadata is hidden by default with a compact indicator
+- ⚙️ **Customizable** - Adjust retention rate, intervals, and daily limits
+- 📱 **Mobile Friendly** - Works on all Obsidian platforms
 
-## First time developing plugins?
+## Quick Start
 
-Quick starting guide for new plugin devs:
+### 1. Create Flashcards
 
-- Check if [someone already developed a plugin for what you want](https://obsidian.md/plugins)! There might be an existing plugin similar enough that you can partner up with.
-- Make a copy of this repo as a template with the "Use this template" button (login to GitHub if you don't see it).
-- Clone your repo to a local development folder. For convenience, you can place this folder in your `.obsidian/plugins/your-plugin-name` folder.
-- Install NodeJS, then run `npm i` in the command line under your repo folder.
-- Run `npm run dev` to compile your plugin from `main.ts` to `main.js`.
-- Make changes to `main.ts` (or create new `.ts` files). Those changes should be automatically compiled into `main.js`.
-- Reload Obsidian to load the new version of your plugin.
-- Enable plugin in settings window.
-- For updates to the Obsidian API run `npm update` in the command line under your repo folder.
+Tag any note with `#flashcards` to turn it into a deck. Then add cards using one of these formats:
 
-## Releasing new releases
-
-- Update your `manifest.json` with your new version number, such as `1.0.1`, and the minimum Obsidian version required for your latest release.
-- Update your `versions.json` file with `"new-plugin-version": "minimum-obsidian-version"` so older versions of Obsidian can download an older version of your plugin that's compatible.
-- Create new GitHub release using your new version number as the "Tag version". Use the exact version number, don't include a prefix `v`. See here for an example: https://github.com/obsidianmd/obsidian-sample-plugin/releases
-- Upload the files `manifest.json`, `main.js`, `styles.css` as binary attachments. Note: The manifest.json file must be in two places, first the root path of your repository and also in the release.
-- Publish the release.
-
-> You can simplify the version bump process by running `npm version patch`, `npm version minor` or `npm version major` after updating `minAppVersion` manually in `manifest.json`.
-> The command will bump version in `manifest.json` and `package.json`, and add the entry for the new version to `versions.json`
-
-## Adding your plugin to the community plugin list
-
-- Check the [plugin guidelines](https://docs.obsidian.md/Plugins/Releasing/Plugin+guidelines).
-- Publish an initial version.
-- Make sure you have a `README.md` file in the root of your repo.
-- Make a pull request at https://github.com/obsidianmd/obsidian-releases to add your plugin.
-
-## How to use
-
-- Clone this repo.
-- Make sure your NodeJS is at least v16 (`node --version`).
-- `npm i` or `yarn` to install dependencies.
-- `npm run dev` to start compilation in watch mode.
-
-## Manually installing the plugin
-
-- Copy over `main.js`, `styles.css`, `manifest.json` to your vault `VaultFolder/.obsidian/plugins/your-plugin-id/`.
-
-## Improve code quality with eslint
-- [ESLint](https://eslint.org/) is a tool that analyzes your code to quickly find problems. You can run ESLint against your plugin to find common bugs and ways to improve your code. 
-- This project already has eslint preconfigured, you can invoke a check by running`npm run lint`
-- Together with a custom eslint [plugin](https://github.com/obsidianmd/eslint-plugin) for Obsidan specific code guidelines.
-- A GitHub action is preconfigured to automatically lint every commit on all branches.
-
-## Funding URL
-
-You can include funding URLs where people who use your plugin can financially support it.
-
-The simple way is to set the `fundingUrl` field to your link in your `manifest.json` file:
-
-```json
-{
-    "fundingUrl": "https://buymeacoffee.com"
-}
+**Single-line format:**
+```
+What is the capital of France?::Paris
 ```
 
-If you have multiple URLs, you can also do:
-
-```json
-{
-    "fundingUrl": {
-        "Buy Me a Coffee": "https://buymeacoffee.com",
-        "GitHub Sponsor": "https://github.com/sponsors",
-        "Patreon": "https://www.patreon.com/"
-    }
-}
+**Multi-line format:**
+```
+What is the capital of France?
+?
+Paris is the capital and largest city of France.
++++
 ```
 
-## API Documentation
+### 2. Review Your Cards
 
-See https://docs.obsidian.md
+1. Click the Oboeru icon in the ribbon (or use the command palette)
+2. Select a deck
+3. Click "Review" to start your spaced repetition session
+4. Rate each card: Again, Hard, Good, or Easy
+
+The plugin automatically schedules cards based on your performance using the FSRS algorithm.
+
+## Card Formats
+
+### Single-Line Cards
+
+Perfect for simple question-answer pairs:
+
+```markdown
+#flashcards
+
+What is 2 + 2?::4
+Who wrote "1984"?::George Orwell
+Python uses what for comments?::# (hash symbol)
+```
+
+### Multi-Line Cards
+
+Better for detailed answers:
+
+```markdown
+#flashcards
+
+What is the SOLID principle?
+?
+SOLID is an acronym for five design principles:
+- Single Responsibility
+- Open/Closed
+- Liskov Substitution
+- Interface Segregation
+- Dependency Inversion
++++
+
+Explain photosynthesis
+?
+Photosynthesis is the process by which plants convert light energy into chemical energy.
+
+Key components:
+1. Chlorophyll captures light
+2. Water is split into hydrogen and oxygen
+3. CO2 is converted to glucose
++++
+```
+
+## Metadata
+
+The plugin stores review data as HTML comments in your notes. By default, these are **hidden in the editor** and replaced with a compact indicator:
+
+```markdown
+What is the capital of France?::Paris
+📊 SRS
+```
+
+Click the **📊 SRS** indicator to toggle visibility of the full metadata:
+
+```markdown
+What is the capital of France?::Paris
+<!--OBOERU:{"v":1,"algo":"fsrs-6","reviewedAt":"2024-01-15T10:30:00Z","dueAt":"2024-01-20T10:30:00Z","s":5.2,"d":4.1,"rating":3,"reviews":5,"lapses":1}-->
+```
+
+The metadata includes:
+- Review schedule (next due date)
+- Stability and difficulty parameters
+- Review history count
+- Lapse count
+
+You can disable metadata hiding in Settings → Oboeru → Editor if you prefer to always see the full metadata.
+
+## Settings
+
+Access settings via Settings → Oboeru:
+
+### FSRS Algorithm
+- **Request Retention** (0.7-0.97): Target recall probability. Higher = more reviews but better retention.
+- **Maximum Interval**: Longest time between reviews (default: 100 years)
+- **Daily New Card Limit**: Maximum new cards per deck per day
+
+### Editor
+- **Hide FSRS Metadata**: Show compact indicator instead of full metadata comment (enabled by default)
+
+## Review vs Cram Mode
+
+### Review Mode
+- Uses FSRS scheduling
+- Cards are shown based on due date (randomized)
+- Your ratings affect future scheduling
+- Limited to daily new card limit
+- Four rating options: Again, Hard, Good, Easy
+- Shows predicted intervals for each rating
+
+### Cram Mode
+- Shows all cards in the deck (randomized)
+- Perfect for focused practice sessions
+- Two simple options: **Again** or **Good**
+- Cards marked "Again" are added to a retry pile
+- After finishing all cards, retry pile is shuffled and shown again
+- Continues in rounds until all cards are marked "Good"
+- Ratings don't affect long-term scheduling (local state only)
+- No daily limits
+- Progress shows current round and remaining cards
+
+## About FSRS
+
+FSRS (Free Spaced Repetition Scheduler) is a modern alternative to traditional algorithms like SM-2. It uses machine learning to optimize review intervals based on actual human memory patterns.
+
+Key advantages:
+- More accurate predictions than SM-2
+- Adapts to individual card difficulty
+- Reduces unnecessary reviews
+- Research-backed and actively maintained
+
+Learn more: [FSRS Documentation](https://github.com/open-spaced-repetition/fsrs4anki)
+
+## Tips & Best Practices
+
+1. **Review Daily** - Consistency is key to effective spaced repetition
+2. **Be Honest** - Rate cards based on how well you actually remembered
+3. **Keep Cards Atomic** - One concept per card works best
+4. **Use Tags** - Organize related decks with nested tags like `#flashcards/japanese`
+5. **Start Small** - Begin with 10-20 cards per deck, add more as you get comfortable
+6. **Use Cram Mode Wisely** - Perfect for exam prep or refreshing a deck before a test
+7. **Mark Again Liberally** - In cram mode, don't hesitate to mark cards "Again" if unsure
+8. **Metadata Indicators** - Click the 📊 SRS badge to show/hide metadata when needed
+
+## Commands
+
+- **Open flashcards** - Opens the Oboeru panel
+
+## Support
+
+If you encounter issues or have feature requests, please open an issue on GitHub.
+
+## License
+
+This plugin is released under the 0-BSD License.
+
+## Credits
+
+- FSRS algorithm by [Jarrett Ye](https://github.com/open-spaced-repetition/fsrs4anki)
+- Built for [Obsidian](https://obsidian.md)

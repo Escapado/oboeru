@@ -1,8 +1,201 @@
-/*
+.oboeru-panel {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  color: var(--text-normal);
+}
 
-This CSS file will be included with your plugin, and
-available in the app when your plugin is enabled.
+.oboeru-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
 
-If your plugin does not need CSS, delete this file.
+.oboeru-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
 
-*/
+.oboeru-subtitle {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.oboeru-deck-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.oboeru-deck {
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 10px;
+  padding: 12px;
+  background: var(--background-secondary);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.oboeru-deck-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.oboeru-deck-name {
+  font-weight: 600;
+}
+
+.oboeru-deck-path {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  word-break: break-word;
+}
+
+.oboeru-deck-counts {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.oboeru-pill {
+  font-size: 0.75rem;
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--background-modifier-border);
+  background: var(--background-primary);
+  color: var(--text-muted);
+}
+
+.oboeru-deck-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.oboeru-button {
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--background-modifier-border);
+  background: var(--background-primary);
+  color: var(--text-normal);
+  cursor: pointer;
+}
+
+.oboeru-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.oboeru-empty {
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px dashed var(--background-modifier-border);
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.oboeru-modal-container {
+  padding: 0;
+}
+
+.oboeru-modal {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px;
+}
+
+.oboeru-modal-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+}
+
+.oboeru-progress {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.oboeru-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.oboeru-question {
+  font-size: 1.05rem;
+  font-weight: 600;
+  white-space: pre-wrap;
+}
+
+.oboeru-answer {
+  border-left: 3px solid var(--interactive-accent);
+  padding: 10px 12px;
+  background: var(--background-secondary);
+  border-radius: 6px;
+  white-space: pre-wrap;
+}
+
+.oboeru-controls {
+  display: flex;
+  gap: 8px;
+}
+
+.oboeru-ratings {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 8px;
+}
+
+.oboeru-rating-label {
+  font-weight: 600;
+}
+
+.oboeru-rating-interval {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+@media (min-width: 600px) {
+  .oboeru-ratings {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  }
+}
+
+/* Metadata widget styling */
+.oboeru-metadata-widget {
+  display: inline-block;
+  margin-right: 8px;
+}
+
+.oboeru-metadata-indicator {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 12px;
+  background: var(--interactive-accent);
+  color: var(--text-on-accent);
+  font-size: 0.75rem;
+  font-weight: 500;
+  cursor: pointer;
+  user-select: none;
+  transition: opacity 0.2s ease;
+}
+
+.oboeru-metadata-indicator:hover {
+  opacity: 0.8;
+}
+
+.oboeru-metadata-expanded {
+  background: var(--background-secondary);
+  border-radius: 4px;
+  padding: 2px 4px;
+  opacity: 0.7;
+}
